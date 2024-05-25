@@ -1,2 +1,2 @@
-.configOpenForti
-credenciales-ssh.txt
+src/config/*
+!src/config/.gitkeep
