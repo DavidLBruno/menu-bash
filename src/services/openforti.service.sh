@@ -1,7 +1,6 @@
 #!/bin/bash
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-CONFIG_FILE="./config/.configOpenForti"
+CONFIG_FILE="$1/config/.configOpenForti"
 
 if [ ! -f "$CONFIG_FILE" ]
 then

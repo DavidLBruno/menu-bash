@@ -1,30 +1,30 @@
 #!/bin/bash
 
-link="/menu"
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )/index.sh"
-SERVICES='./services/';
+link="$HOME/menu"
+ROUTE="$( cd "$( dirname "$( readlink -f "${BASH_SOURCE[0]}" )" )" &> /dev/null && pwd )"
 
 if [ ! -L "$link" ]
 then
     echo "El enlace simbólico no existe. Creando el enlace simbólico..."
-    ln -s "$script" "$DIR"
+    sudo ln -sf "$DIR" "$link"
 fi
 
 while true
 do
     echo "1. Abrir OpenForti"
     echo "2. Conectar por ssh"
-    echo "3. Opcion 3"
+    echo "3. Actualizar paquetes"
     echo "4. Salir"
     echo -n "Por favor, elige una opción: "
     read opcion
 
     case $opcion in
-        1) bash ${SERVICES}'openforti.service.sh'
+        1) bash ${ROUTE}/services/openforti.service.sh $ROUTE
            ;;
-        2) bash ${SERVICES}'conect-ssh.service.sh'
+        2) bash ${ROUTE}/services/conect-ssh.service.sh $ROUTE
            ;;
-        3) echo 'Proxima opcion'
+        3) bash ${ROUTE}/services/update-ubuntu.service.sh $ROUTE
            ;;
         4) echo "¡Hasta luego!"
            exit
